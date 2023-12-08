@@ -77,7 +77,6 @@ function getOdds(arr){
     return odds;
 }
 
-
 console.log(`You have given ${getLength(numbers)} numbers.`);
 console.log(`You have given ${getLength(moreNumbers)} numbers.`);
 console.log(`The sum of your numbers is ${getSum(numbers)}.`);
