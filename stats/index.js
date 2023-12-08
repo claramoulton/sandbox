@@ -1,3 +1,6 @@
+const numbers = [1, 2, 3, -4, 5];
+const moreNumbers = [2, 4, 6];
+
 function getLength(arr){
     return arr.length;
 }
@@ -74,8 +77,7 @@ function getOdds(arr){
     return odds;
 }
 
-const numbers = [1, 2, 3, -4, 5];
-const moreNumbers = [2, 4, 6];
+
 console.log(`You have given ${getLength(numbers)} numbers.`);
 console.log(`You have given ${getLength(moreNumbers)} numbers.`);
 console.log(`The sum of your numbers is ${getSum(numbers)}.`);
