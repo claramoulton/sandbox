@@ -1,0 +1,13 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+form {
+  border: solid 1px mediumaquamarine;
+  padding: 1rem;
+}
+
+.odd {
+  font-size: 1.5rem;
+  color: mediumaquamarine;
+}

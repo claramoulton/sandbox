@@ -1,0 +1,18 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#productsList {
+  border: solid 3px thistle;
+}
+
+#productsList li {
+  border: solid 1.5px mediumaquamarine;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+#spanCount {
+  background-color: thistle;
+  color: lightgoldenrodyellow;
+}
