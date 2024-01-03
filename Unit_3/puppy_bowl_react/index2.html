@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>React Artists</title>
+    <link href="index.css" rel="stylesheet" />
+  </head>
   <body>
     <div id="root"></div>
   </body>
@@ -23,39 +27,46 @@
     import { createRoot } from "react-dom/client";
 
     function App() {
-      const [players, setPlayers] = React.useState([]);
+      const [artists, setArtists] = React.useState([]);
       const [id, setId] = React.useState(window.location.hash.slice(1));
 
-      console.log(id);
+      console.log(typeof id);
 
       React.useEffect(function () {
-        async function fetchPlayers() {
+        async function fetchArtists() {
           const response = await fetch(
-            "https://fsa-puppy-bowl.herokuapp.com/api/2309-ftb-et-am/players"
+            "https://fsa-crud-2aa9294fe819.herokuapp.com/api/2309_ftb_et_web_am/artists"
           );
           const json = await response.json();
-          setPlayers(json.data);
+          setArtists(json.data);
         }
-        fetchPlayers();
+        fetchArtists();
 
         window.addEventListener("hashchange", function () {
           setId(window.location.hash.slice(1));
         });
       }, []);
 
+      let filtered = artists;
+      if (id) {
+        filtered = artists.filter(function (artist) {
+          return artist.id === id * 1;
+        });
+      }
+
       return (
         <div>
-          <h1>Puppy Bowl</h1>
-          <a href="#">All Puppies</a>
+          <h1>Artists ({artists.length})</h1>
+          <a href="#"> All Artists</a>
           <ul>
-            {players.map(function (player) {
+            {filtered.map(function (artist) {
               return (
-                <li key={player.id}>
-                  <a href={"#${player.id}"}>{player.name}</a>
+                <li key={artist.id}>
+                  <a href={`#${artist.id}`}>{artist.name}</a>
+                  {id ? <p>{artist.description}</p> : null}
                 </li>
               );
             })}
-            ;
           </ul>
         </div>
       );
