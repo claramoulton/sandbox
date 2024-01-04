@@ -26,6 +26,18 @@
     import React, { StrictMode } from "react";
     import { createRoot } from "react-dom/client";
 
+    function Recipe({ recipe }) {
+      console.log(recipe);
+      return (
+        <div>
+          <h2>
+            <a href="#">{recipe.name}</a>
+          </h2>
+          <p>{recipe.description}</p>
+          <img src={recipe.imageUrl} />
+        </div>
+      );
+    }
     function Recipes({ recipes }) {
       console.log(recipes);
       return (
@@ -47,6 +59,7 @@
 
     function App() {
       const [recipes, setRecipes] = React.useState([]);
+      const [id, setId] = React.useState(window.location.hash.slice(1));
       //the above does the same as the following:
       //const arr = React.useState([]);
       //const recipes = arr[0];
@@ -60,12 +73,20 @@
           setRecipes(json.data);
         }
         fetchData();
+
+        window.addEventListener("hashchange", function () {
+          setId(window.location.hash.slice(1));
+        });
       }, []);
+
+      const recipe = recipes.find(function (recipe) {
+        return recipe.id === id * 1;
+      });
 
       return (
         <div>
           <Title recipes={recipes} />
-          <Recipes recipes={recipes} />
+          {recipe ? <Recipe recipe={recipe} /> : <Recipes recipes={recipes} />}
         </div>
       );
     }
